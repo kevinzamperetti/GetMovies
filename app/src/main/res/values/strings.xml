@@ -9,6 +9,8 @@
     <string name="error_indiponivel">Indiponibilidade de buscar os filmes</string>
     <string name="error_internet">\"Ative sua conexão de dados ou WIFI</string>
     <string name="error_request">Erro na requisição</string>
-    <string name="action_top_tool">Filme mais votado</string>
-    <string name="action_pop_tool">Filme mais popular</string>
+    <string name="action_top_rated_tool">Melhores Avaliados</string>
+    <string name="action_popular_tool">Populares</string>
+    <string name="action_movie_id">Específico</string>
+    <string name="action_similar">Similares</string>
 </resources>

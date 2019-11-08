@@ -1,4 +1,4 @@
-package com.br.getmovies.thetopmovies;
+package com.br.getmovies;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

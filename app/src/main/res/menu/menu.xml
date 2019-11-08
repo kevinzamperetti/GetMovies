@@ -5,21 +5,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
     <item
-        android:id="@+id/action_top"
-        android:icon="@drawable/ic_action_rating"
-        android:orderInCategory="1"
-        android:iconTint="@color/primaryTextColor"
-        android:title="@string/action_top"
-        android:tooltipText="@string/action_top_tool"
+        android:id="@+id/action_top_rated"
         android:contentDescription="@string/action_top"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_rating"
+        android:iconTint="@color/primaryTextColor"
+        android:orderInCategory="2"
+        android:title="@string/action_top_rated_tool"
+        android:tooltipText="@string/action_top_rated_tool"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_pop"
-        android:orderInCategory="1"
-        android:tooltipText="@string/action_pop_tool"
-
+        android:id="@+id/action_popular"
         android:contentDescription="@string/action_pop"
+        android:enabled="true"
         android:icon="@drawable/ic_action_popular"
+        android:orderInCategory="2"
         android:title="@string/action_pop"
-        app:showAsAction="ifRoom"/>
+        android:tooltipText="@string/action_popular_tool"
+        app:showAsAction="ifRoom" />
 </menu>

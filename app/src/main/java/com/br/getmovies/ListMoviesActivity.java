@@ -2,10 +2,10 @@ package com.br.getmovies;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -28,8 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
-
+public class ListMoviesActivity extends AppCompatActivity {
 
     //private static final String API_KEY = "d15439ba9445688264047fbb91fce4c4";
     private static final String API_KEY = BuildConfig.API_KEY;
@@ -43,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list_movies);
+
         mRecyclerView = findViewById(R.id.recyclerview_movies);
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
         mErrorMessageDisplay = findViewById(R.id.tv_error);
@@ -191,4 +191,5 @@ public class MainActivity extends AppCompatActivity {
     private void hideProgressBar() {
         mLoadingIndicator.setVisibility(View.GONE);
     }
+
 }
