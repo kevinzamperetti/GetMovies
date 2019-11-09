@@ -8,9 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
@@ -104,6 +102,24 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_poster"
             app:srcCompat="@drawable/ic_action_calendar2" />
+
+        <Button
+            android:id="@+id/btnSimilar"
+            android:layout_width="95dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="54dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="sans-serif-condensed"
+            android:includeFontPadding="false"
+            android:text="Similares"
+            app:layout_constraintBottom_toTopOf="@+id/tv_overview"
+            app:layout_constraintEnd_toStartOf="@+id/imageView3"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintStart_toEndOf="@+id/tv_lacamento"
+            app:layout_constraintTop_toBottomOf="@+id/iv_poster"
+            app:layout_constraintVertical_bias="0.0" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
