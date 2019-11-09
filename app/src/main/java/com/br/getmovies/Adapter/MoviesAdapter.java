@@ -23,7 +23,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieAdapt
 
     private  final String BASE_IMG="https://image.tmdb.org/t/p/w500/";
 
-    private ArrayList<Movie> mMoviesData;
+    public ArrayList<Movie> mMoviesData;
     Context context;
     @NonNull
     @Override

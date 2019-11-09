@@ -6,7 +6,7 @@
     <string name="action_calendar">Data do Lançamento</string>
     <string name="action_rate">Nota atribuida</string>
     <string name="action_banner">Capa do filme</string>
-    <string name="error_indiponivel">Indiponibilidade de buscar os filmes</string>
+    <string name="error_indisponivel">Indiponibilidade de buscar os filmes</string>
     <string name="error_internet">\"Ative sua conexão de dados ou WIFI</string>
     <string name="error_request">Erro na requisição</string>
     <string name="action_top_rated_tool">Melhores Avaliados</string>

@@ -14,7 +14,7 @@
         android:layout_column="2"
         android:background="@color/colorPrimary"
         android:orientation="horizontal"
-        tools:context=".MainActivity">
+        tools:context=".ListPopularMoviesActivity">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview_movies"

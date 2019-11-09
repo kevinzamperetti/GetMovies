@@ -1,32 +1,20 @@
 package com.br.getmovies;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.br.getmovies.Adapter.MoviesAdapter;
-import com.br.getmovies.Data.Movie;
 import com.br.getmovies.Data.MoviesDTO;
-import com.br.getmovies.Transport.RetrofitConfig;
-
-import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private CoordinatorLayout coordinatorLayout;
     private RecyclerView mRecyclerView;
     private MoviesAdapter mMovieAdapter;
+    Context context;
     private TextView mErrorMessageDisplay;
     private ProgressBar mLoadingIndicator;
 
@@ -44,20 +33,55 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mRecyclerView = findViewById(R.id.recyclerview_movies);
-        coordinatorLayout = findViewById(R.id.coordinatorLayout);
-        mErrorMessageDisplay = findViewById(R.id.tv_error);
-        GridLayoutManager layoutManager = new GridLayoutManager(this, numberOfColumns(), GridLayoutManager.VERTICAL, false);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setHasFixedSize(true);
+        Button btnPopular = findViewById(R.id.btnPopular);
+        Button btnTopRated = findViewById(R.id.btnTopRated);
+        Button btnSpecific = findViewById(R.id.btnSpecific);
+        Button btnSimilar = findViewById(R.id.btnSimilar);
+
         mMovieAdapter = new MoviesAdapter();
-        mRecyclerView.setAdapter(mMovieAdapter);
-        mLoadingIndicator = findViewById(R.id.pb_loading_indicator);
-        if (VerificaConexao(this)) {
-            getPopularMovies();
-        } else {
+
+        if (!VerificaConexao(this)) {
             showErrorMessage(getString(R.string.error_internet));
         }
+
+        //btnPopular.onClick
+        btnPopular.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View v ) {
+                Intent it = new Intent( MainActivity.this, ListPopularMoviesActivity.class );
+                startActivity( it );
+            }
+        });
+
+        //btnSpecific.onClick
+        btnSpecific.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View v ) {
+//                Intent intent = new Intent(v.getContext(), MoviesDetailActivity.class);
+//                Movie movie = mMovieAdapter.mMoviesData.get(19404);
+//                intent.putExtra("movie",movie);
+//                context.startActivity(intent);
+            }
+        });
+
+        //btnTopRated.onClick
+        btnTopRated.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View v ) {
+                Intent it = new Intent( MainActivity.this, ListTopRatedMoviesActivity.class );
+                startActivity( it );
+            }
+        });
+
+        //btnSimilar.onClick
+        btnSimilar.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View v ) {
+                Intent it = new Intent( MainActivity.this, ListSimilarMoviesActivity.class );
+                startActivity( it );
+            }
+        });
+
     }
 
     private void showErrorMessage(String msg) {
@@ -66,105 +90,6 @@ public class MainActivity extends AppCompatActivity {
         Snackbar snackbarError = Snackbar.make(coordinatorLayout, msg, Snackbar.LENGTH_LONG);
         snackbarError.show();
     }
-
-    private void getPopularMovies() {
-        showProgressBar();
-        Call<MoviesDTO> call = new RetrofitConfig().get().getApiPopularMovies(API_KEY);
-        call.enqueue(new Callback<MoviesDTO>() {
-            @Override
-            public void onResponse(Call<MoviesDTO> call, Response<MoviesDTO> response) {
-                Log.i("CALLBACK", response.message());
-
-                if (response.isSuccessful() == true) {
-                    if (response.body() != null) {
-                        mList = response.body();
-                    }
-
-                    mMovieAdapter.setMovieData((ArrayList<Movie>) mList.getMovies());
-                    hideProgressBar();
-
-                } else {
-                    showErrorMessage(getString(R.string.error_indiponivel));
-                    Log.i("CALLBACK", response.message());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MoviesDTO> call, Throwable t) {
-                Log.e("CALLBACK", t.getMessage());
-                showErrorMessage(getString(R.string.error_request));
-            }
-        });
-    }
-
-    private void getTopRatedMovies() {
-
-        showProgressBar();
-        Call<MoviesDTO> call = new RetrofitConfig().get().getApiTopRatedMovies(API_KEY);
-        call.enqueue(new Callback<MoviesDTO>() {
-            @Override
-            public void onResponse(Call<MoviesDTO> call, Response<MoviesDTO> response) {
-                if (response.isSuccessful() == true) {
-                    if (response.body() != null) {
-                        mList = response.body();
-
-                    }
-                    mMovieAdapter.setMovieData((ArrayList<Movie>) mList.getMovies());
-                    hideProgressBar();
-                } else {
-                    showErrorMessage(getString(R.string.error_indiponivel));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MoviesDTO> call, Throwable t) {
-                Log.e("CALLBACK", t.getMessage());
-                showErrorMessage(getString(R.string.error_request));
-            }
-        });
-
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_popular) {
-
-            getPopularMovies();
-            hideProgressBar();
-
-            return true;
-        }
-        if (id == R.id.action_top_rated) {
-
-
-            getTopRatedMovies();
-            hideProgressBar();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    private int numberOfColumns() {
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int widthDivider = 400;
-        int width = displayMetrics.widthPixels;
-        int nColumns = width / widthDivider;
-        if (nColumns < 2) return 2;
-        return nColumns;
-    }
-
 
     public boolean VerificaConexao(Context contexto) {
         boolean conectado = false;
@@ -182,13 +107,5 @@ public class MainActivity extends AppCompatActivity {
             conectado = false;
         }
         return conectado;
-    }
-
-    private void showProgressBar() {
-        mLoadingIndicator.setVisibility(View.VISIBLE);
-    }
-
-    private void hideProgressBar() {
-        mLoadingIndicator.setVisibility(View.GONE);
     }
 }

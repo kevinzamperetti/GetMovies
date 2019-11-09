@@ -28,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListMoviesActivity extends AppCompatActivity {
+public class ListPopularMoviesActivity extends AppCompatActivity {
 
     //private static final String API_KEY = "d15439ba9445688264047fbb91fce4c4";
     private static final String API_KEY = BuildConfig.API_KEY;
@@ -42,7 +42,7 @@ public class ListMoviesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_movies);
+        setContentView(R.layout.activity_popular_list_movies);
 
         mRecyclerView = findViewById(R.id.recyclerview_movies);
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
@@ -84,7 +84,7 @@ public class ListMoviesActivity extends AppCompatActivity {
                     hideProgressBar();
 
                 } else {
-                    showErrorMessage(getString(R.string.error_indiponivel));
+                    showErrorMessage(getString(R.string.error_indisponivel));
                     Log.i("CALLBACK", response.message());
                 }
             }
@@ -95,64 +95,6 @@ public class ListMoviesActivity extends AppCompatActivity {
                 showErrorMessage(getString(R.string.error_request));
             }
         });
-    }
-
-    private void getTopRatedMovies() {
-
-        showProgressBar();
-        Call<MoviesDTO> call = new RetrofitConfig().get().getApiTopRatedMovies(API_KEY);
-        call.enqueue(new Callback<MoviesDTO>() {
-            @Override
-            public void onResponse(Call<MoviesDTO> call, Response<MoviesDTO> response) {
-                if (response.isSuccessful() == true) {
-                    if (response.body() != null) {
-                        mList = response.body();
-
-                    }
-                    mMovieAdapter.setMovieData((ArrayList<Movie>) mList.getMovies());
-                    hideProgressBar();
-                } else {
-                    showErrorMessage(getString(R.string.error_indiponivel));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MoviesDTO> call, Throwable t) {
-                Log.e("CALLBACK", t.getMessage());
-                showErrorMessage(getString(R.string.error_request));
-            }
-        });
-
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_popular) {
-
-            getPopularMovies();
-            hideProgressBar();
-
-            return true;
-        }
-        if (id == R.id.action_top_rated) {
-
-
-            getTopRatedMovies();
-            hideProgressBar();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     private int numberOfColumns() {

@@ -16,9 +16,9 @@ public interface MoviesService {
     @GET("top_rated")
     Call<MoviesDTO> getApiTopRatedMovies(@Query("api_key")String apiKey);
 
-    @GET("/{id}")
-    Call<MoviesDTO> getMovieDetails(@Path("id") Integer id, @Query("api_key")String apiKey);
+    @GET("{id}")
+    Call<MoviesDTO> getApiDetailsMovie(@Path("id") Integer id, @Query("api_key")String apiKey);
 
-    @GET("/{id}/similar")
-    Call<MoviesDTO> getMovieSimilar(@Path("id") Integer id, @Query("api_key")String apiKey);
+    @GET("{movie_id}/similar")
+    Call<MoviesDTO> getApiSimilarMovies(@Path("movie_id") Integer id, @Query("api_key")String apiKey);
 }
