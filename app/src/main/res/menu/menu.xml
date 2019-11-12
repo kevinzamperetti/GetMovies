@@ -9,7 +9,7 @@
         android:contentDescription="@string/action_top"
         android:enabled="true"
         android:icon="@drawable/ic_action_rating"
-        android:iconTint="@color/primaryTextColor"
+        android:iconTint="@color/colorWhite"
         android:orderInCategory="2"
         android:title="@string/action_top_rated_tool"
         android:tooltipText="@string/action_top_rated_tool"
