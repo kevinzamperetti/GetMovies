@@ -1,6 +1,7 @@
 package com.br.getmovies;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
@@ -51,8 +52,12 @@ public class ListSimilarMoviesActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mMovieAdapter);
         mLoadingIndicator = findViewById(R.id.pb_loading_indicator);
 
+        Bundle extra = getIntent().getExtras();
+        Intent intent = getIntent();
+        String idMovie = extra.getString("idMovie");
+
         if (VerificaConexao(this)) {
-            getSimilarMovies();
+            getSimilarMovies(idMovie);
         } else {
             showErrorMessage(getString(R.string.error_internet));
         }
@@ -65,9 +70,9 @@ public class ListSimilarMoviesActivity extends AppCompatActivity {
         snackbarError.show();
     }
 
-    private void getSimilarMovies() {
+    private void getSimilarMovies(String id) {
         showProgressBar();
-        Call<MoviesDTO> call = new RetrofitConfig().get().getApiSimilarMovies(475557, API_KEY);
+        Call<MoviesDTO> call = new RetrofitConfig().get().getApiSimilarMovies(id, API_KEY);
         call.enqueue(new Callback<MoviesDTO>() {
             @Override
             public void onResponse(Call<MoviesDTO> call, Response<MoviesDTO> response) {
@@ -96,8 +101,8 @@ public class ListSimilarMoviesActivity extends AppCompatActivity {
         int widthDivider = 400;
         int width = displayMetrics.widthPixels;
         int nColumns = width / widthDivider;
-        if (nColumns < 2) return 2;
-        return nColumns;
+        //if (nColumns < 2) return 2;
+        return 1;
     }
 
     public boolean VerificaConexao(Context contexto) {

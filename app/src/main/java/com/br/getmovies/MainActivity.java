@@ -35,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Button btnPopular = findViewById(R.id.btnPopular);
         Button btnTopRated = findViewById(R.id.btnTopRated);
-        Button btnSpecific = findViewById(R.id.btnSpecific);
-        Button btnSimilar = findViewById(R.id.btnSimilar);
+        Button btnSimilar = findViewById(R.id.btnSimilares);
 
         mMovieAdapter = new MoviesAdapter();
 
@@ -50,17 +49,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick( View v ) {
                 Intent it = new Intent( MainActivity.this, ListPopularMoviesActivity.class );
                 startActivity( it );
-            }
-        });
-
-        //btnSpecific.onClick
-        btnSpecific.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick( View v ) {
-//                Intent intent = new Intent(v.getContext(), MoviesDetailActivity.class);
-//                Movie movie = mMovieAdapter.mMoviesData.get(19404);
-//                intent.putExtra("movie",movie);
-//                context.startActivity(intent);
             }
         });
 

@@ -103,8 +103,8 @@ public class ListPopularMoviesActivity extends AppCompatActivity {
         int widthDivider = 400;
         int width = displayMetrics.widthPixels;
         int nColumns = width / widthDivider;
-        if (nColumns < 2) return 2;
-        return nColumns;
+        //if (nColumns < 2) return 2;
+        return 1;
     }
 
 

@@ -20,5 +20,5 @@ public interface MoviesService {
     Call<MoviesDTO> getApiDetailsMovie(@Path("id") Integer id, @Query("api_key")String apiKey);
 
     @GET("{movie_id}/similar")
-    Call<MoviesDTO> getApiSimilarMovies(@Path("movie_id") Integer id, @Query("api_key")String apiKey);
+    Call<MoviesDTO> getApiSimilarMovies(@Path("movie_id") String id, @Query("api_key")String apiKey);
 }
