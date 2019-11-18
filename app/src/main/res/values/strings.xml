@@ -13,4 +13,5 @@
     <string name="action_popular_tool">Populares</string>
     <string name="action_movie_id">Específico</string>
     <string name="action_similar">Similares</string>
+    <string name="error_addFavorite">Erro ao adicionar filme aos favoritos. Revise os dados!</string>
 </resources>

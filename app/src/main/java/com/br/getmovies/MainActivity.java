@@ -31,11 +31,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        getSupportActionBar().hide(); //esconde actionBar com nome do projeto
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button btnPopular = findViewById(R.id.btnPopular);
         Button btnTopRated = findViewById(R.id.btnTopRated);
-        Button btnSimilar = findViewById(R.id.btnSimilares);
+        Button btnFavorites = findViewById(R.id.btnFavorites);
 
         mMovieAdapter = new MoviesAdapter();
 
@@ -61,11 +64,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //btnSimilar.onClick
-        btnSimilar.setOnClickListener( new View.OnClickListener() {
+        //btnAddFavoritos.onClick
+        btnFavorites.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick( View v ) {
-                Intent it = new Intent( MainActivity.this, ListSimilarMoviesActivity.class );
+                Intent it = new Intent( MainActivity.this, ListFavoritesMoviesActivity.class );
                 startActivity( it );
             }
         });

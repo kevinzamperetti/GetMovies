@@ -7,7 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.br.getmovies.Data.DbHelper;
+import com.br.getmovies.Data.FavoritesDAO;
 import com.br.getmovies.Data.Movie;
 import com.squareup.picasso.Picasso;
 
@@ -36,6 +39,7 @@ public class MoviesDetailActivity extends AppCompatActivity {
         mTvLacamento.setText(movie.getRelease_date());
         mTvOver.setText(movie.getOverview());
         Button btnSimilares = findViewById(R.id.btnSimilares);
+        Button btnAddFavoritos = findViewById(R.id.btnFavorites);
 
         Picasso.get()
                 .load(BASE_IMG + movie.getPoster_path())
@@ -49,6 +53,29 @@ public class MoviesDetailActivity extends AppCompatActivity {
                 it.putExtra("idMovie", movie.getId());
 
                 startActivity( it );
+            }
+        });
+
+        //btnAddFavoritos.onClick
+        btnAddFavoritos.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View v ) {
+
+                String idMovieFavorite = movie.getId();
+                String titleFavorite = movie.getTitle();
+                String posterFavorite = movie.getPoster_path();
+                String overviewFavorite = movie.getOverview();
+                DbHelper db = new DbHelper( getBaseContext() );
+
+                if( idMovieFavorite.equals("") || titleFavorite.equals("") || posterFavorite.equals("") || overviewFavorite.equals("") ){
+                    Toast.makeText( getBaseContext(), R.string.error_addFavorite, Toast.LENGTH_LONG ).show();
+                }else{
+                    Movie movie = null;
+                    movie = new Movie( idMovieFavorite, titleFavorite, posterFavorite, overviewFavorite );
+                    FavoritesDAO favoritesDAO = new FavoritesDAO( getBaseContext() );
+                    String msg = favoritesDAO.save( movie );
+                    Toast.makeText( getBaseContext(), msg, Toast.LENGTH_LONG ).show();
+                }
             }
         });
 

@@ -13,14 +13,14 @@
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="20dp"
         android:text="Populares"
         app:layout_constraintBottom_toTopOf="@+id/btnTopRated"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSubTituloMain" />
 
     <Button
         android:id="@+id/btnTopRated"
@@ -31,37 +31,51 @@
         android:layout_marginEnd="100dp"
         android:layout_marginBottom="20dp"
         android:text="Melhores avaliados"
-        app:layout_constraintBottom_toTopOf="@+id/btnSimilares"
+        app:layout_constraintBottom_toTopOf="@+id/btnFavorites"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnPopular" />
 
     <Button
-        android:id="@+id/btnSimilares"
+        android:id="@+id/btnFavorites"
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_marginStart="100dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="100dp"
-        android:layout_marginBottom="20dp"
-        android:text="Similares"
-        app:layout_constraintBottom_toTopOf="@+id/btnFavoritos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnTopRated" />
-
-    <Button
-        android:id="@+id/btnFavoritos"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="100dp"
         android:text="Favoritos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSimilares" />
+        app:layout_constraintTop_toBottomOf="@+id/btnTopRated" />
+
+    <TextView
+        android:id="@+id/textViewSubTituloMain"
+        android:layout_width="318dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="20dp"
+        android:text="Os melhores filmes você encontra aqui!"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnPopular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="281dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewSubTituloMain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
 
 </android.support.constraint.ConstraintLayout>
