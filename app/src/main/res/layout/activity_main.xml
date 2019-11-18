@@ -52,12 +52,12 @@
 
     <TextView
         android:id="@+id/textViewSubTituloMain"
-        android:layout_width="318dp"
-        android:layout_height="24dp"
+        android:layout_width="306dp"
+        android:layout_height="26dp"
         android:layout_marginBottom="20dp"
         android:text="Os melhores filmes você encontra aqui!"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp"
+        android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@+id/btnPopular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"

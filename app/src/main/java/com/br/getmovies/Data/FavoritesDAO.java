@@ -30,6 +30,8 @@ public class FavoritesDAO {
             valores.put( banco.TITLE, movie.getTitle() );
             valores.put( banco.POSTER, movie.getPoster_path() );
             valores.put( banco.OVERVIEW, movie.getOverview() );
+            valores.put( banco.VOTE_AVERAGE, movie.getVote_average() );
+            valores.put( banco.RELEASE_DATE, movie.getRelease_date() );
             resultado = db.insert( banco.TABELA,null, valores );
             System.out.printf("Resultado Insert: " + resultado);
             db.close();
@@ -45,7 +47,7 @@ public class FavoritesDAO {
     public ArrayList<Movie> list() {
         ArrayList<Movie> lista = new ArrayList<>();
         Cursor cursor;
-        String[] campos = { DbHelper.ID_MOVIE, DbHelper.TITLE, DbHelper.POSTER, DbHelper.OVERVIEW};
+        String[] campos = { DbHelper.ID_MOVIE, DbHelper.TITLE, DbHelper.POSTER, DbHelper.OVERVIEW, DbHelper.VOTE_AVERAGE, DbHelper.RELEASE_DATE};
         db = banco.getReadableDatabase();
         cursor = db.query( DbHelper.TABELA, campos,null,null,null,null,null );
         if ( cursor.moveToFirst()  ) {
@@ -55,7 +57,9 @@ public class FavoritesDAO {
                 String title = cursor.getString(1) ;
                 String poster_path = cursor.getString(2) ;
                 String overview = cursor.getString(3) ;
-                Movie movie = new Movie( idMovie, title, poster_path, overview );
+                String vote_average = cursor.getString(4) ;
+                String release_date = cursor.getString(5);
+                Movie movie = new Movie( idMovie, title, poster_path, overview, vote_average, release_date );
                 lista.add( movie );
             } while ( cursor.moveToNext());
             return lista;

@@ -65,13 +65,16 @@ public class MoviesDetailActivity extends AppCompatActivity {
                 String titleFavorite = movie.getTitle();
                 String posterFavorite = movie.getPoster_path();
                 String overviewFavorite = movie.getOverview();
+                String voteAverageFavorite = movie.getVote_average();
+                String releaseDateFavorite = movie.getRelease_date();
                 DbHelper db = new DbHelper( getBaseContext() );
 
-                if( idMovieFavorite.equals("") || titleFavorite.equals("") || posterFavorite.equals("") || overviewFavorite.equals("") ){
+                if( idMovieFavorite.equals("") || titleFavorite.equals("") || posterFavorite.equals("") || overviewFavorite.equals("")
+                    || voteAverageFavorite.equals("") || releaseDateFavorite.equals("") ){
                     Toast.makeText( getBaseContext(), R.string.error_addFavorite, Toast.LENGTH_LONG ).show();
                 }else{
                     Movie movie = null;
-                    movie = new Movie( idMovieFavorite, titleFavorite, posterFavorite, overviewFavorite );
+                    movie = new Movie( idMovieFavorite, titleFavorite, posterFavorite, overviewFavorite, voteAverageFavorite, releaseDateFavorite );
                     FavoritesDAO favoritesDAO = new FavoritesDAO( getBaseContext() );
                     String msg = favoritesDAO.save( movie );
                     Toast.makeText( getBaseContext(), msg, Toast.LENGTH_LONG ).show();

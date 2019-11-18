@@ -120,11 +120,13 @@ public class Movie implements Parcelable {
     public Movie() {
     }
 
-    public Movie(String id, String title, String poster, String overview) {
+    public Movie(String id, String title, String poster, String overview, String vote_average, String release_date) {
         this.id = id;
         this.title = title;
         this.poster_path = poster;
         this.overview = overview;
+        this.vote_average = vote_average;
+        this.release_date = release_date;
     }
 
     @Override

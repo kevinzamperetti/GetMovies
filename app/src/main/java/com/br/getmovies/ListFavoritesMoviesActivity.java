@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.br.getmovies.Adapter.FavoritesAdapter;
@@ -30,6 +31,7 @@ public class ListFavoritesMoviesActivity extends AppCompatActivity {
         setContentView( R.layout.activity_list_favorites_movies );
 
         listaFavorites = new ArrayList<>();
+//        Button btnExcluirFavorites = findViewById(R.id.btnExcluirFavorites);
 
         final FavoritesDAO favoritesDAO = new FavoritesDAO( getApplicationContext() );
         listaFavorites = favoritesDAO.list();
@@ -49,18 +51,19 @@ public class ListFavoritesMoviesActivity extends AppCompatActivity {
                 Movie movie = listaFavorites.get(position);
                 intent.putExtra("movie",movie);
                 context.startActivity(intent);
-                //
-//                Intent intent = new Intent(getApplicationContext(), EditarActivity.class);
-//
-//                // Identificador do dado a ser passado,
-//                intent.putExtra( "id", m.getId() );
-//
-//                // Dados a serem passados
-//                intent.putExtra( "title", m.getTitle() );
-//                intent.putExtra( "movie", m );
-//                startActivity( intent );
-
             }
+
+
+
         } );
+
+//        //btnExcluirFavorites.onClick
+//        btnExcluirFavorites.setOnClickListener( new View.OnClickListener() {
+//            @Override
+//            public void onClick( View v ) {
+//                Movie movieExcluir = listaFavorites.get(v.getId());
+//                String msg = favoritesDAO.deletar(movieExcluir);
+//            }
+//        });
     }
 }
