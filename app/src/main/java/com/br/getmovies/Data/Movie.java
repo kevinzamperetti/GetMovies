@@ -16,6 +16,8 @@ public class Movie implements Parcelable {
     public String vote_average;
     public String title;
     public String popularity;
+    public String imdb_id;
+    public String status;
     public String poster_path;
     public String overview;
     public String release_date;
@@ -36,9 +38,11 @@ public class Movie implements Parcelable {
                 ", vote_average='" + vote_average + '\'' +
                 ", title='" + title + '\'' +
                 ", popularity='" + popularity + '\'' +
+                ", imdb_id='" + imdb_id + '\'' +
+                ", status=" + status + '\'' +
                 ", poster_path='" + poster_path + '\'' +
                 ", overview='" + overview + '\'' +
-                ", poster=" + poster +
+                ", poster=" + poster + '\'' +
                 '}';
     }
 
@@ -74,6 +78,22 @@ public class Movie implements Parcelable {
         this.popularity = popularity;
     }
 
+    public String getImdb_id() {
+        return imdb_id;
+    }
+
+    public void setImdb_id(String imdb_id) {
+        this.imdb_id = imdb_id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public String getPoster_path() {
         return poster_path;
     }
@@ -98,6 +118,8 @@ public class Movie implements Parcelable {
         this.poster = poster;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -107,6 +129,8 @@ public class Movie implements Parcelable {
                 Objects.equals(vote_average, movie.vote_average) &&
                 Objects.equals(title, movie.title) &&
                 Objects.equals(popularity, movie.popularity) &&
+                Objects.equals(imdb_id, movie.imdb_id) &&
+                Objects.equals(status, movie.status) &&
                 Objects.equals(poster_path, movie.poster_path) &&
                 Objects.equals(overview, movie.overview) &&
                 Objects.equals(poster, movie.poster);
@@ -114,7 +138,7 @@ public class Movie implements Parcelable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, vote_average, title, popularity, poster_path, overview, poster);
+        return Objects.hash(id, vote_average, title, popularity, imdb_id, status, poster_path, overview, poster);
     }
 
     public Movie() {
@@ -140,6 +164,8 @@ public class Movie implements Parcelable {
         dest.writeString(this.vote_average);
         dest.writeString(this.title);
         dest.writeString(this.popularity);
+        dest.writeString(this.imdb_id);
+        dest.writeString(this.status);
         dest.writeString(this.poster_path);
         dest.writeString(this.overview);
         dest.writeString(this.release_date);
@@ -151,6 +177,8 @@ public class Movie implements Parcelable {
         this.vote_average = in.readString();
         this.title = in.readString();
         this.popularity = in.readString();
+        this.imdb_id = in.readString();
+        this.status = in.readString();
         this.poster_path = in.readString();
         this.overview = in.readString();
         this.release_date = in.readString();

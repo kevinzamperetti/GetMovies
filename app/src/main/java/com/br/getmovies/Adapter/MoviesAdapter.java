@@ -42,12 +42,12 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieAdapt
     @Override
     public void onBindViewHolder(@NonNull MovieAdapterViewHolder movieAdapterViewHolder, int i) {
         Log.e("COUNT2",String.valueOf(i));
-            String title = mMoviesData.get(i).title.toString();
-            String rate = mMoviesData.get(i).vote_average.toString();
+            String title = mMoviesData.get(i).title;
+            String rate = mMoviesData.get(i).vote_average;
             movieAdapterViewHolder.mMovieTitle.setText(title);
             Picasso.get()
                     .load(BASE_IMG+mMoviesData.get(i).poster_path)
-                    . into(movieAdapterViewHolder.mIvPoster);
+                    .into(movieAdapterViewHolder.mIvPoster);
     }
 
     @Override

@@ -39,6 +39,7 @@ public class MoviesDetailActivity extends AppCompatActivity {
         mTvVote.setText(movie.getVote_average());
         mTvLacamento.setText(movie.getRelease_date());
         mTvOver.setText(movie.getOverview());
+
         Button btnSimilares = findViewById(R.id.btnSimilares);
         Button btnAddFavoritos = findViewById(R.id.btnFavorites);
         Button btnImdb = findViewById(R.id.btnImdb);
@@ -93,7 +94,10 @@ public class MoviesDetailActivity extends AppCompatActivity {
 
                // startActivity( it );
 
-                String url = "http://google.com";
+                String imdb_id = movie.getTitle();
+
+                //String url = "https://www.imdb.com/title/tt0112870/";
+                String url = "https://www.imdb.com/find?ref_=nv_sr_fn&q=" + imdb_id;
                 Intent it = new Intent(Intent.ACTION_VIEW);
                 it.setData(Uri.parse(url));
                 startActivity(it);
