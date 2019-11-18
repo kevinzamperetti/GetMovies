@@ -1,6 +1,7 @@
 package com.br.getmovies;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -40,6 +41,7 @@ public class MoviesDetailActivity extends AppCompatActivity {
         mTvOver.setText(movie.getOverview());
         Button btnSimilares = findViewById(R.id.btnSimilares);
         Button btnAddFavoritos = findViewById(R.id.btnFavorites);
+        Button btnImdb = findViewById(R.id.btnImdb);
 
         Picasso.get()
                 .load(BASE_IMG + movie.getPoster_path())
@@ -79,6 +81,22 @@ public class MoviesDetailActivity extends AppCompatActivity {
                     String msg = favoritesDAO.save( movie );
                     Toast.makeText( getBaseContext(), msg, Toast.LENGTH_LONG ).show();
                 }
+            }
+        });
+
+        //btnImdb.onClick
+        btnImdb.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View v ) {
+               // Intent it = new Intent( getApplicationContext(), ListSimilarMoviesActivity.class );
+               // it.putExtra("idMovie", movie.getId());
+
+               // startActivity( it );
+
+                String url = "http://google.com";
+                Intent it = new Intent(Intent.ACTION_VIEW);
+                it.setData(Uri.parse(url));
+                startActivity(it);
             }
         });
 

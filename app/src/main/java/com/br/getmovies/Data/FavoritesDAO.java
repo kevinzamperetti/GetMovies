@@ -41,7 +41,7 @@ public class FavoritesDAO {
         } catch ( SQLException e ) {
             Log.e( "ERRO - ", e.getMessage() );
         }
-        return movie.getTitle() + " já adicionado aos favoritos!!";
+        return "ERRO - " + movie.getTitle() + " já adicionado aos favoritos!!";
     }
 
     public ArrayList<Movie> list() {
